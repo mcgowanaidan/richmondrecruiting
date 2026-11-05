@@ -1,6 +1,8 @@
-// Set this to the address that should receive intro-call requests.
-// The form opens the visitor's email app with the request pre-filled.
-var CONTACT_EMAIL = 'hello@yourdomain.com';
+// Intro-call requests are sent to this address through FormSubmit (formsubmit.co).
+// First-time setup: submit the form once on the live site, then click the
+// activation link FormSubmit emails to this address.
+// If the service cannot be reached, the form falls back to opening an email draft.
+var CONTACT_EMAIL = 'tylerjelrod@gmail.com';
 
 (function () {
   var levels = [
@@ -48,20 +50,34 @@ var CONTACT_EMAIL = 'hello@yourdomain.com';
   });
   show(0);
 
+  // Swap each photo placeholder for the real image once the file is uploaded.
+  document.querySelectorAll('.photo[data-src]').forEach(function (box) {
+    var im = new Image();
+    im.onload = function () {
+      box.textContent = '';
+      box.removeAttribute('role');
+      box.removeAttribute('aria-label');
+      box.classList.add('has-img');
+      im.alt = box.getAttribute('data-alt') || '';
+      box.appendChild(im);
+    };
+    im.src = box.getAttribute('data-src');
+  });
+
   var ok = document.getElementById('ok');
   var form = document.getElementById('lead');
-  var configured = CONTACT_EMAIL.indexOf('yourdomain.com') === -1;
-  if (configured) {
-    document.querySelectorAll('[data-contact-email]').forEach(function (el) {
-      el.textContent = CONTACT_EMAIL;
-      el.classList.remove('ph');
-    });
-  }
+  var send = document.getElementById('send');
   function val(id) { return document.getElementById(id).value.trim(); }
   function say(text, warn) {
     ok.textContent = text;
     ok.className = warn ? 'warn' : '';
     ok.hidden = false;
+  }
+  function draft(fields) {
+    var lines = Object.keys(fields).map(function (k) { return k + ': ' + (fields[k] || 'n/a'); });
+    return 'mailto:' + CONTACT_EMAIL +
+      '?subject=' + encodeURIComponent('Intro call request: ' + fields['Player name']) +
+      '&body=' + encodeURIComponent(lines.join('\n'));
   }
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -71,23 +87,45 @@ var CONTACT_EMAIL = 'hello@yourdomain.com';
       say('Please add the player\'s name and a valid parent or guardian email so we can reply.', true);
       return;
     }
-    if (!configured) {
-      say('Contact email not set yet. Add your address to CONTACT_EMAIL at the top of script.js.', true);
-      return;
-    }
-    var lines = [
-      'Player: ' + player,
-      'Grade: ' + val('gr'),
-      'Position: ' + (val('pos') || 'n/a'),
-      'High school: ' + (val('sch') || 'n/a'),
-      'Parent/guardian email: ' + parent,
-      '',
-      val('msg')
-    ];
-    var href = 'mailto:' + CONTACT_EMAIL +
-      '?subject=' + encodeURIComponent('Intro call request: ' + player) +
-      '&body=' + encodeURIComponent(lines.join('\n'));
-    say('Your email app should open with this request filled in. If it does not, email ' + CONTACT_EMAIL + ' directly.', false);
-    window.location.href = href;
+    var fields = {
+      'Player name': player,
+      'Grade': val('gr'),
+      'Position': val('pos'),
+      'High school': val('sch'),
+      'Parent/guardian email': parent,
+      'Message': val('msg')
+    };
+    var payload = {
+      _subject: 'Intro call request: ' + player,
+      _template: 'table',
+      _captcha: 'false',
+      _honey: document.getElementById('hp').value,
+      email: parent
+    };
+    Object.keys(fields).forEach(function (k) { payload[k] = fields[k]; });
+
+    send.disabled = true;
+    send.textContent = 'Sending...';
+    fetch('https://formsubmit.co/ajax/' + encodeURIComponent(CONTACT_EMAIL), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (res) {
+      if (!res.ok) { throw new Error('HTTP ' + res.status); }
+      return res.json();
+    }).then(function (data) {
+      if (data && (data.success === true || data.success === 'true')) {
+        say('Thanks. Your request is in and we will reply within one business day.', false);
+        form.reset();
+      } else {
+        throw new Error('Not accepted');
+      }
+    }).catch(function () {
+      say('We could not send that automatically. Your email app should open with the request filled in. If it does not, email ' + CONTACT_EMAIL + ' directly.', true);
+      window.location.href = draft(fields);
+    }).then(function () {
+      send.disabled = false;
+      send.textContent = 'Request my intro call';
+    });
   });
 })();

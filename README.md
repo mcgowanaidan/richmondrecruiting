@@ -34,15 +34,14 @@ To use a custom domain, add it under **Settings > Pages** and point your DNS rec
 
 ## Before you launch
 
-- **Contact email:** set `CONTACT_EMAIL` at the top of `script.js`. The intro-call form opens the visitor's email app with the request filled in. Until the address is set, the form shows a notice and does not open an email.
-- **Placeholders:** items highlighted in light blue brackets in the page are sample copy to replace. Search `class="ph"` in `index.html` to find them all:
+- **Activate the intro-call form (one time):** the form posts to [FormSubmit](https://formsubmit.co) and emails each request to `CONTACT_EMAIL` in `script.js` (currently tylerjelrod@gmail.com). After the site is live, submit the form once yourself. FormSubmit emails an activation link to that address. Click it, and every later request is delivered. Check the spam folder if it does not arrive. If the service cannot be reached, the form falls back to opening an email draft. FormSubmit only works from a hosted site, not from a file opened on your computer.
+- **Phone number:** the number provided had 9 digits (804258327). The page shows `(804) 258-327[?]` highlighted until the full 10-digit number is confirmed. Replace it in `index.html`.
+- **Placeholders:** items highlighted in light blue brackets are sample copy to replace. Search `class="ph"` in `index.html` to find them all:
   - counties served
-  - Tyler Elrod's background and photo
-  - Season program price
-  - phone number
-  - response time
-  - the free intro call label
-- **Photo:** replace the `.photo` placeholder block in the About section with an `<img>` of Tyler.
+  - the phone number (see above)
+  - the "What we do not do" policy note
+  - the level-descriptions review note
+- **Photos:** upload two photos of Tyler to the repo root, next to `index.html`, named exactly `tyler-elrod-1.jpg` and `tyler-elrod-2.jpg` (lowercase, `.jpg`). The page swaps each placeholder for its photo automatically. Portrait crops (4:5) look best, and keeping each file under about 500 KB keeps the page fast. If a photo is a PNG, convert it to JPG or tell whoever maintains the site to update the `data-src` names in `index.html`.
 - **Level descriptions:** the FBS, FCS, Division II, Division III, NAIA and junior college copy is general. Confirm it against current rules from each governing body.
 - **Rules check:** confirm NCAA and Virginia High School League rules on third-party recruiting services, and how contracts and payment work with minors, before taking paying clients.
 - **Footer disclaimer:** review the wording with whoever advises the business.
@@ -51,4 +50,5 @@ To use a custom domain, add it under **Settings > Pages** and point your DNS rec
 
 - Colors and fonts are CSS variables at the top of `styles.css`. Light and dark values are defined separately.
 - The college-level explorer content lives in the `levels` array in `script.js`.
-- The `mailto` form uses the visitor's own email app, so there is no server and no stored data.
+- Prices live in the Packages section of `index.html`: free 20-minute intro call, $100 roadmap session, $250 season program.
+- The form has no server of your own and stores nothing on the site. Requests pass through FormSubmit to your inbox.

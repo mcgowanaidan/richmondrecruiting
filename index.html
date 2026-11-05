@@ -204,7 +204,7 @@
     <div class="pk">
       <article class="card">
         <h3>Intro call</h3>
-        <div class="price"><span class="ph">[Free]</span> &middot; 20 min</div>
+        <div class="price">Free &middot; 20 min</div>
         <ul>
           <li>Where the player stands today</li>
           <li>What stage to focus on first</li>
@@ -225,7 +225,7 @@
       </article>
       <article class="card">
         <h3>Season program</h3>
-        <div class="price"><span class="ph">[$ price]</span> &middot; per season</div>
+        <div class="price">$250 &middot; per season</div>
         <ul>
           <li>Everything in the roadmap session</li>
           <li>Film and profile review</li>
@@ -240,14 +240,27 @@
 
 <section id="about" style="padding-top:0">
   <div class="wrap about">
-    <div class="photo" role="img" aria-label="Placeholder for photo of Tyler Elrod">Photo of<br>Tyler Elrod<br>goes here</div>
+    <div class="photos">
+      <div class="photo" data-src="tyler-elrod-1.jpg" data-alt="Tyler Elrod" role="img" aria-label="Placeholder for photo 1 of Tyler Elrod, to be provided">Photo 1 of<br>Tyler Elrod<br>to be provided</div>
+      <div class="photo" data-src="tyler-elrod-2.jpg" data-alt="Tyler Elrod" role="img" aria-label="Placeholder for photo 2 of Tyler Elrod, to be provided">Photo 2 of<br>Tyler Elrod<br>to be provided</div>
+    </div>
     <div>
       <p class="eyebrow">About &middot; Founder &amp; CEO</p>
       <h2 style="margin-top:14px; margin-bottom:6px">Tyler Elrod</h2>
       <p style="font-family:var(--mono); font-size:.8rem; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-text); margin-bottom:22px">Founder &amp; CEO, Fall Line Recruiting</p>
-      <p>Tyler founded Fall Line Recruiting to give Richmond-area players and their families the guidance that is usually available only to those who already know the system. He teaches the process, reviews the work, and leaves the decisions to the player and his parents. <span class="ph">[Add Tyler's football, coaching or recruiting background here.]</span></p>
-      <p><span class="ph">[Add one or two sentences on why Tyler started this and what players can expect when they work with him.]</span></p>
-      <p>Follow Tyler on X: <a class="social" href="https://x.com/TylerElrodUVA" target="_blank" rel="noopener">@TylerElrodUVA</a></p>
+      <p>Tyler spent more than three years with the University of Virginia football program as a Football Recruiting and Scouting Assistant, from December 2022 to February 2026. His responsibilities included overseeing weekly written reports, scholarship trackers, and score and statistic reports, along with game day setup and official visit assistance.</p>
+      <p>Before that, he was a two-year starting quarterback at Hanover High School, so he has seen recruiting from the player's side as well as the program's.</p>
+      <p>Tyler earned a bachelor's degree in Chemistry (2023) and a Master of Education in Intercollegiate Athletics Administration (2025), both from the University of Virginia, and studied at The Scouting Academy in 2024. He founded Fall Line Recruiting to give Richmond-area players and their families the guidance that is usually available only to those who already know the system. He teaches the process, reviews the work, and leaves the decisions to the player and his parents.</p>
+      <dl class="facts creds">
+        <dt>Recruiting</dt><dd>Football Recruiting and Scouting Assistant, University of Virginia, 2022&ndash;2026</dd>
+        <dt>Playing</dt><dd>Two-year starting QB, Hanover High School</dd>
+        <dt>Education</dt><dd>M.Ed., Intercollegiate Athletics Administration, UVA, 2025<br>B.A., Chemistry, UVA, 2023</dd>
+      </dl>
+      <div class="links">
+        <a class="btn primary sm" href="https://www.hudl.com/video/3/8569014/5bfd76b44df57610acbfda2e" target="_blank" rel="noopener">Watch Tyler's Hudl film</a>
+        <a class="btn ghost sm" href="https://www.linkedin.com/in/tyler-elrod-a548a2255/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn ghost sm" href="https://x.com/TylerElrodUVA" target="_blank" rel="noopener">@TylerElrodUVA</a>
+      </div>
     </div>
   </div>
 </section>
@@ -257,8 +270,13 @@
     <div style="display:grid; gap:16px">
       <p class="eyebrow">Free intro call</p>
       <h2>Tell us where you are in the process</h2>
-      <p style="color:var(--muted)">Fill this out and we will reply within <span class="ph">[one business day]</span> to schedule 20 minutes with the player and a parent or guardian.</p>
-      <p style="font-family:var(--mono); font-size:.8rem; color:var(--muted)"><span class="ph" data-contact-email>[hello@yourdomain.com]</span> &middot; <span class="ph">[phone]</span> &middot; <a class="social" href="https://x.com/TylerElrodUVA" target="_blank" rel="noopener">@TylerElrodUVA</a></p>
+      <p style="color:var(--muted)">Fill this out and we will reply within one business day to schedule 20 minutes with the player and a parent or guardian.</p>
+      <ul class="reach-list" aria-label="Contact details">
+        <li><span>Email</span><a class="social" href="mailto:tylerjelrod@gmail.com" target="_blank" rel="noopener">tylerjelrod@gmail.com</a></li>
+        <li><span>Phone</span><span class="ph">(804) 258-327[?]</span></li>
+        <li><span>X</span><a class="social" href="https://x.com/TylerElrodUVA" target="_blank" rel="noopener">@TylerElrodUVA</a></li>
+        <li><span>LinkedIn</span><a class="social" href="https://www.linkedin.com/in/tyler-elrod-a548a2255/" target="_blank" rel="noopener">Tyler Elrod</a></li>
+      </ul>
     </div>
     <form id="lead" novalidate>
       <div class="f"><label for="pn">Player name</label><input id="pn" name="player" autocomplete="off" placeholder="First and last"></div>
@@ -268,6 +286,7 @@
       <div class="f"><label for="sch">High school</label><input id="sch" name="school" autocomplete="off"></div>
       <div class="f full"><label for="em">Parent or guardian email</label><input id="em" name="email" type="email" autocomplete="off" placeholder="name@example.com"></div>
       <div class="f full"><label for="msg">Anything we should know?</label><textarea id="msg" name="message" placeholder="Offers so far, camps attended, questions on your mind"></textarea></div>
+      <input id="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
       <div class="f full"><button class="btn primary" type="submit" id="send">Request my intro call</button></div>
       <div id="ok" hidden role="status"></div>
     </form>
