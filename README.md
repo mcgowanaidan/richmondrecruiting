@@ -1,8 +1,6 @@
-# Fall Line Recruiting
+# Recognize Recruiting
 
 Static website for a recruiting education business serving Richmond-area high school football players and their families. Plain HTML, CSS and JavaScript. No build step.
-
-"Fall Line Recruiting" is a working name.
 
 ## Files
 
